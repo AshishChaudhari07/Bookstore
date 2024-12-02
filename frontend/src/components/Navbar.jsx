@@ -2,13 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Login from './Login';
 import { useAuth } from '../context/authProvider';
 import Logout from './Logout';
+import axios from 'axios';
 
 function Navbar() {
 
     const [authUser,setAuthUser] = useAuth();
 
-      // State to store the search query
-  const [searchQuery, setSearchQuery] = useState('');
+    const [searchTerm, setSearchTerm] = useState("");
+    const [books, setBooks] = useState([]);
+  
+    const searchBooks = async () => {
+        try {
+            const response = await axios.get(`http://localhost:4001/book/search?query=${searchTerm}`);
+            // Assuming the API endpoint returns a list of books matching the search term
+            setBooks(response.data);
+        } catch (error) {
+            console.error("Error fetching books:", error);
+        }
+    };
 
     const [theme,setTheme] = useState(localStorage.getItem("theme")?localStorage.getItem("theme"):"light")
     const element = document.documentElement;
@@ -40,12 +51,6 @@ function Navbar() {
         }
     },[])
 
-      // Handle search functionality
-  const handleSearch = () => {
-    console.log('Searching for:', searchQuery); 
-    // Here, you can implement your search logic (filtering items or API calls)
-  };
-
     const navItem = (<>
         <li>
             <a href="/">Home</a>
@@ -54,7 +59,7 @@ function Navbar() {
             <a href="/course">Course</a>
         </li>
         <li>
-            <a href="/content">Content</a>
+            <a href="/content">Contect</a>
         </li>
         <li>
             <a href="/about">About</a>
@@ -101,7 +106,7 @@ function Navbar() {
                                 {navItem}
                             </ul>
                         </div>
-                        {/* hidden md:block laptop ni screen par dekhay phobile ni screen par na dekhay */}
+                        {/* hidden md:block laptop ni screen par dekhay mobile ni screen par na dekhay */}
                         {/* Search Bar */}
             <div className="hidden md:block">
               <label className="flex items-center gap-2">
@@ -110,8 +115,8 @@ function Navbar() {
                   type="text"
                   className="py-2 rounded-md px-3 grow outline-none dark:bg-slate-900 dark:text-white dark:border"
                   placeholder="Search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)} // Update search query
+                  value={searchTerm} 
+                  onChange={(e) => setSearchTerm(e.target.value)} // Update search query
                 />
                 {/* Search button */}
                 <svg
@@ -119,7 +124,7 @@ function Navbar() {
                   viewBox="0 0 16 16"
                   fill="currentColor"
                   className="h-4 w-4 opacity-70 cursor-pointer"
-                  onClick={handleSearch} // Trigger search on click
+                  onClick={searchBooks} // Trigger search on click
                 >
                   <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
                 </svg>

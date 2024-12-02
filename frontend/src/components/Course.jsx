@@ -11,7 +11,7 @@ function Course() {
       try {
         const res = await axios.get('http://localhost:4001/book');
         console.log(res.data);
-        setBook(res.data.book); // Assuming `res.data.book` is the correct array
+        setBook(res.data.book);
       } catch (error) {
         console.log(error);
       }
@@ -23,7 +23,7 @@ function Course() {
     <div>
       <div className='max-w-screen-2xl container mx-auto md:px-20 px-4'>
         <div className='items-center justify-center text-center '>
-          <h1 className='mt-28 text-2xl font-semibold md:text-4xl'>
+          <h1 className='mt-[60px] text-2xl font-semibold md:text-4xl pt-[102px]'>
             We're delighted to have you <span className='text-pink-500'>Here! :)</span>
           </h1>
           <p className='mt-12'>
@@ -40,10 +40,14 @@ function Course() {
           {
             book.length > 0 ? (
               book.map((item) => (
-                <Cards item={item} key={item.id} />
+                <li className='list-none' key={item._id}>
+                  <Link to={`/book/${item._id}`}>
+                    <Cards item={item} />
+                  </Link>
+                </li>
               ))
             ) : (
-              <p>Loading...</p> // Add a fallback message when there are no books
+              <p>Loading..</p> // Add a fallback message when there are no books
             )
           }
         </div>

@@ -7,6 +7,8 @@ import Content from './components/Content';
 import About from './components/About';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAuth } from './context/authProvider';
+import BookDetails from './bookDetail/BookDetail';
+import Search from './components/Search';
 
 function App() {
   const [authUser,setAuthUser] = useAuth()
@@ -19,6 +21,8 @@ function App() {
         <Route path='/signup' element={<Signup/>} />
         <Route path='/content' element={<Content/>} />
         <Route path='/about' element={<About/>} />
+        <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/book/:query" element={<Search/>} />
       </Routes>
       <Toaster/>
     </BrowserRouter>

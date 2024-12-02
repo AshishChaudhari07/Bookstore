@@ -48,7 +48,7 @@ function AuthContent() {
         <div className="w-[600px]">
                 <div className="modal-box">
                     <form onSubmit={handleSubmit(onSubmit)} method="dialog">
-                    <h1 className="text-lg">Content us</h1>
+                    <h1 className="text-lg">Contect us</h1>
                     {/* name */}
                     <div className='mt-4 space-y-2'>
                         <span>Name:</span>
