@@ -10,7 +10,7 @@ const BookDetails = () => {
     useEffect(() => {
         const fetchBook = async () => {
             try {
-                const res = await axios.get(`http://localhost:4001/book/${id}`);
+                const res = await axios.get(`https://bookstore-backend-dpto.onrender.com/book/${id}`);
                 setBook(res.data);  // Assuming res.data is an object representing a single book
             } catch (error) {
                 setError(error.message);

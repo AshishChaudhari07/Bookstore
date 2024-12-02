@@ -12,7 +12,7 @@ function Freebook() {
   useEffect(() => {
     const getYbooks = async () => {
       try {
-        const res = await axios.get('http://localhost:4001/book');
+        const res = await axios.get('https://bookstore-backend-dpto.onrender.com/book');
         const data = res.data.book.filter((data)=> data.category === "Free")
         console.log(data);
         setBook(data); // Assuming `res.data.book` is the correct array

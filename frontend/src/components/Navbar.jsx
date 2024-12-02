@@ -13,7 +13,7 @@ function Navbar() {
   
     const searchBooks = async () => {
         try {
-            const response = await axios.get(`http://localhost:4001/book/search?query=${searchTerm}`);
+            const response = await axios.get(`https://bookstore-backend-dpto.onrender.com/book/search?query=${searchTerm}`);
             // Assuming the API endpoint returns a list of books matching the search term
             setBooks(response.data);
         } catch (error) {
