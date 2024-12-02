@@ -23,7 +23,7 @@ function AuthContent() {
         console.log(userInfo)
         
         try {
-          const res = await axios.post("https://bookstore-backend-dpto.onrender.com/authContent/content", userInfo);
+          const res = await axios.post("http://localhost:4001/authContent/content", userInfo);
           console.log(res.data);
           if (res.data) {
             toast.success("Content Submitted Successfully");

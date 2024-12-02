@@ -21,7 +21,7 @@ function Signup() {
       password: data.password,
     };
     await axios
-      .post("https://bookstore-backend-dpto.onrender.com/user/signup", userInfo)
+      .post("http://localhost:4001/user/signup", userInfo)
       .then((res) => {
         if (res.data) {
           toast.success("Signup Successfully");
